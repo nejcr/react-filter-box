@@ -1,15 +1,15 @@
 import * as React from 'react';
-import * as _ from "lodash";
 import * as CodeMirror from "codemirror";
+import {Editor} from "codemirror";
 import "codemirror/addon/hint/show-hint";
 import "codemirror/addon/display/placeholder";
 import "./FilterMode"
 import 'codemirror/lib/codemirror.css';
 import "codemirror/addon/hint/show-hint.css";
-import { UnControlled as ReactCodeMirror, IInstance } from 'react-codemirror2'
+import {Controlled as ReactCodeMirror, IInstance} from 'react-codemirror2'
 
 import grammarUtils from "./GrammarUtils";
-import { ExtendedCodeMirror } from "./models/ExtendedCodeMirror";
+import {ExtendedCodeMirror} from "./models/ExtendedCodeMirror";
 import AutoCompletePopup from "./AutoCompletePopup";
 
 export default class FilterInput extends React.Component<any, any> {
@@ -84,12 +84,12 @@ export default class FilterInput extends React.Component<any, any> {
             this.handlePressingAnyCharacter();
         })
 
-        ref.editor.on("focus", (cm, e?) => {
+        ref.editor.on("focus" as any, (cm:Editor, e:any) => {
             this.handlePressingAnyCharacter();
             this.props.onFocus(e);
         })
 
-        ref.editor.on("blur", (cm, e?) => {
+        ref.editor.on("blur" as any, (cm:Editor, e:any) => {
             this.onSubmit(this.doc.getValue());
             this.props.onBlur(e)
         })
@@ -109,7 +109,7 @@ export default class FilterInput extends React.Component<any, any> {
         return (
             <ReactCodeMirror
                 ref={this.codeMirrorRef.bind(this)}
-                onChange={this.handleEditorChange.bind(this)}
+                onBeforeChange={this.handleEditorChange.bind(this)}
                 options={this.options}
                 value={this.props.value} />
         );
