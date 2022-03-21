@@ -6,7 +6,7 @@ import "codemirror/addon/display/placeholder";
 import "./FilterMode"
 import 'codemirror/lib/codemirror.css';
 import "codemirror/addon/hint/show-hint.css";
-import {Controlled as ReactCodeMirror, IInstance} from 'react-codemirror2'
+import {Controlled as ReactCodeMirror} from 'react-codemirror2'
 
 import grammarUtils from "./GrammarUtils";
 import {ExtendedCodeMirror} from "./models/ExtendedCodeMirror";
@@ -101,7 +101,7 @@ export default class FilterInput extends React.Component<any, any> {
         });
     }
 
-    private handleEditorChange(_editor: IInstance, _data: CodeMirror.EditorChange, value: string) {
+    private handleEditorChange(_editor: any, _data: CodeMirror.EditorChange, value: string) {
         this.props.onChange(value);
     }
 
